@@ -7,7 +7,7 @@ title = Fractals
 package.name = fractals001
 
 # (str) Package domain (needed for android/ios packaging)
-package.domain = org.emptylibra
+package.domain = org.EmptyLibra
 
 # (str) Source code where the main.py live
 source.dir = .
