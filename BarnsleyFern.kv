@@ -1,0 +1,148 @@
+<BarnsleyFern>:
+    MDBoxLayout:
+        orientation:'vertical'
+        MDBottomNavigation:
+            id: bottom_nav_barnsley
+            panel_color: .2, .2, .2, 1
+
+            MDBottomNavigationItem:
+                name: 'screen 1'
+                text: 'Теория'
+                icon: 'book-open-variant'
+                FitImage:
+                    source: 'Barns_theory_picture.jpg'
+                MDBoxLayout:
+                    orientation: 'vertical'
+                    padding: 10
+                    spacing: 5
+                    ScrollView:
+                        do_scroll_x: False
+                        do_scroll_y: True
+                        size_hint: 1, 0.5
+                        MDLabel:
+                            text: root.labelText
+                            theme_text_color: "Custom"
+                            text_color: 1,1,1,1
+                            halign: 'left'
+                            line_height: 1.5
+                            size_hint_y: None
+                            height: self.texture_size[1]
+                            text_size: self.width, None
+                            canvas.before:
+                                Color:
+                                    rgba: 0.02, 0.15, 0.17, 0.7
+                                Rectangle:
+                                    pos: self.pos
+                                    size: self.size
+                    MDBoxLayout:
+                        id: box_l
+                        orientation: 'horizontal'
+                        size_hint: 1, 0.5
+                        Image:
+                            size_hint: None, None
+                            size: box_l.size
+                            source: 'picture.jpg'
+                            allow_stretch: True
+
+
+            MDBottomNavigationItem:
+                name: 'screen 2'
+                text: 'Настройки'
+                icon: 'settings'
+                orientation: 'vertical'
+                FitImage:
+                    source: 'Barns_settings_picture.jpg'
+                MDBoxLayout:
+                    orientation: 'vertical'
+                    canvas.before:
+                        Color:
+                            rgba: .24,.35,.29, 0.8
+                        Rectangle:
+                            pos: self.pos
+                            size: self.size
+                    MDGridLayout:
+                        id: settings_layout
+                        cols: 8
+                        rows: 5
+                        size_hint: 1, 0.6
+                        padding: 15, 0, 15, 0
+                        spacing: 5
+
+                    MDBoxLayout:
+                        orientation: 'vertical'
+                        padding: 10
+                        size_hint: 1, 0.4
+                        MDBoxLayout:
+                            orientation: 'vertical'
+                            size_hint: 0.6, 1
+                            pos_hint:{"center_x": 0.5, "center_y": 0.5}
+                            MDLabel:
+                                pos_hint:{"center_x": 0.5, "center_y": 0.5}
+                                size_hint: 1, None
+                                height: dp(28)
+                                text: 'Количество точек:' + str(slider_p.value)
+                                theme_text_color: "Custom"
+                                text_color: 1, 1, 1, 1
+                                font_style: 'Caption'
+                                halign: 'center'
+                            MDSlider:
+                                id: slider_p
+                                hint: False
+                                size_hint: 0.5, None
+                                height: dp(30)
+                                min: 1000
+                                max: 100000
+                                value: 20000
+                                step: 1000
+                                size_hint: 1, 0.5
+                        MDBoxLayout:
+                            size_hint: 0.4, 1
+                            spacing: 20
+                            padding: 0, 0, 0, 20
+                            orientation: 'vertical'
+                            pos_hint:{"center_x": 0.5, "center_y": 0.5}
+                            MDRectangleFlatButton:
+                                md_bg_color: .21,.57,.77, 0.7
+                                size_hint_x: None
+                                size_hint_y: None
+                                height: dp(48)
+                                width: dp(185)
+                                pos_hint:{"center_x": 0.5, "center_y": 0.5}
+                                text: "Выбор папоротника"
+                                text_color: 1,1,1, 1
+                                font_style: 'Caption'
+                                on_release:
+                                    root.fern_selection(self)
+                            MDRectangleFlatButton:
+                                md_bg_color: .21,.57,.77, 0.7
+                                size_hint_y: None
+                                height: dp(48)
+                                pos_hint:{"center_x": 0.5, "center_y": 0.5}
+                                text: "Нарисовать"
+                                text_color: 1,1,1, 1
+                                font_style: 'Caption'
+                                on_release:
+                                    root.check_values_and_draw()
+
+
+            MDBottomNavigationItem:
+                id: bot_nav_item_1
+                name: 'screen 3'
+                text: 'Холст'
+                icon: 'brush'
+                ScatterLayout:
+                    id: draw_SL
+                    auto_bring_to_front: False
+                    md_bg_color: 1,1,1,1
+                    scale: 1
+                    scale_min: .1
+                    scale_max: 10.
+
+            MDBottomNavigationItem:
+                name: 'screen 4'
+                text: 'Выйти'
+                icon: 'exit-to-app'
+                on_tab_press:
+                    bottom_nav_barnsley.switch_tab('screen 1')
+                    root.manager.transition.direction = 'right'
+                    root.manager.current = 'fractals'

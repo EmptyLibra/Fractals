@@ -1,0 +1,147 @@
+#: import Window kivy.core.window.Window
+#: import Clock kivy.clock
+<ChaosMethod>:
+    MDBoxLayout:
+        orientation:'vertical'
+        MDBottomNavigation:
+            id: bottom_nav_chaos
+            panel_color: .2, .2, .2, 1
+
+            MDBottomNavigationItem:
+                name: 'screen 1'
+                text: 'Теория'
+                icon: 'book-open-variant'
+                FitImage:
+                    source: 'Chaos_theory_picture.jpg'
+                MDBoxLayout:
+                    orientation: 'vertical'
+                    padding: 15
+                    canvas.before:
+                        Color:
+                            rgba: .23,.18,.42, 0.7
+                        Rectangle:
+                            pos: self.pos
+                            size: self.size
+                    ScrollView:
+                        do_scroll_x: False
+                        do_scroll_y: True
+                        MDLabel:
+                            text: root.labelText
+                            theme_text_color: "Custom"
+                            text_color: 1,1,1,1
+                            halign: 'left'
+                            line_height: 1.5
+                            size_hint_y: None
+                            height: self.texture_size[1]
+                            text_size: self.width, None
+
+            MDBottomNavigationItem:
+                name: 'screen 2'
+                text: 'Настройки'
+                icon: 'settings'
+                FitImage:
+                    source: 'Chaos_settings_picture.jpg'
+                MDBoxLayout:
+                    id: box
+                    orientation: 'vertical'
+                    padding: 50,50,50,30
+                    canvas.before:
+                        Color:
+                            rgba: .19,.20,.36, 0.7
+                        Rectangle:
+                            pos: self.pos
+                            size: self.size
+                    MDBoxLayout:
+                        orientation: 'vertical'
+                        MDLabel:
+                            text: 'Количество вершин многоугольника:' + str(slider_a.value)
+                            font_style: 'Caption'
+                            halign: 'center'
+                            size_hint: 1, 0.5
+                            theme_text_color: "Custom"
+                            text_color: 1, 1, 1, 1
+                        MDSlider:
+                            id: slider_a
+                            hint: False
+                            min: 3
+                            max: 10
+                            value: 3
+                            step: 1
+                            size_hint: 1, 0.5
+
+                    MDBoxLayout:
+                        orientation: 'vertical'
+                        MDLabel:
+                            text: 'Количество итераций:' + str(slider_count.value)
+                            halign: 'center'
+                            font_style: 'Caption'
+                            size_hint: 1, 0.5
+                            theme_text_color: "Custom"
+                            text_color: 1, 1, 1, 1
+                        MDSlider:
+                            id: slider_count
+                            hint: False
+                            min: 100
+                            max: 20000
+                            value: 6000
+                            step: 100
+                            size_hint: 1, 0.5
+
+                    MDBoxLayout:
+                        orientation: 'vertical'
+                        MDLabel:
+                            text: 'Координаты начальной точки (x,y): (' + str(int(slider_x.value)) + ',' +str(int(slider_y.value)) + ')'
+                            font_style: 'Caption'
+                            halign: 'center'
+                            size_hint: 1, 0.3
+                            theme_text_color: "Custom"
+                            text_color: 1, 1, 1, 1
+                        MDBoxLayout:
+                            orientation: 'horizontal'
+                            MDSlider:
+                                id: slider_x
+                                hint: False
+                                min: 0
+                                max: root.ids.floatL.width - 6
+                                value: root.ids.floatL.width // 2
+                                step: 10
+                                size_hint: 0.5, 1
+                            MDSlider:
+                                id: slider_y
+                                hint: False
+                                min: 0
+                                max: root.ids.floatL.height
+                                value: root.ids.floatL.height // 2
+                                step: 10
+                                size_hint: 0.5, 1
+                        MDBoxLayout:
+                            orientation: 'vertical'
+                            size_hint: 1, 0.6
+                            MDRectangleFlatButton:
+                                pos_hint:{"center_x": 0.5, "center_y": 0.5}
+                                text: "Нарисовать!"
+                                font_style: 'Caption'
+                                text_color: 0,0,0, 1
+                                md_bg_color: .21,.57,.77, 0.7
+                                size_hint_y: None
+                                height: dp(48)
+                                on_release:
+                                    bottom_nav_chaos.switch_tab('screen 3')
+                                    Clock.Clock.schedule_once(root.start_drawing)
+
+            MDBottomNavigationItem:
+                name: 'screen 3'
+                text: 'Холст'
+                icon: 'brush'
+                MDFloatLayout:
+                    id: floatL
+                    md_bg_color: 0,0,0,1
+
+            MDBottomNavigationItem:
+                name: 'screen 4'
+                text: 'Выйти'
+                icon: 'exit-to-app'
+                on_tab_press:
+                    bottom_nav_chaos.switch_tab('screen 1')
+                    root.manager.transition.direction = 'left'
+                    root.manager.current = 'fractals'

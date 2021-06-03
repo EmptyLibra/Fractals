@@ -1,0 +1,50 @@
+<SelectionFractalsMenu>:
+    FitImage:
+        source: 'Menu2.jpg'
+    BoxLayout:
+        orientation: 'vertical'
+        padding: 50
+        spacing: 30
+
+        MDRaisedButton:
+            pos_hint:{"center_x": 0.5, "center_y": 0.5}
+            size_hint: 0.5, 0.1
+            text: "Метод хаоса"
+            text_color: 0, 0, 0, 1
+            md_bg_color: .95, .87, .60, 0.7
+            on_release:
+                root.manager.transition.direction = 'right'
+                root.manager.current = 'chaos'
+                root.manager.current_screen.ids.bottom_nav_chaos.switch_tab('screen 1')
+                # Из-за бага приходится перезагружать кнопки
+                root.manager.current_screen.ids.bottom_nav_chaos._refresh_tabs()
+
+        MDRaisedButton:
+            pos_hint:{"center_x": 0.5, "center_y": 0.5}
+            size_hint: 0.5, 0.1
+            text: "Папоротник Барнсли"
+            text_color: 0, 0, 0, 1
+            md_bg_color: .95, .87, .60, 0.7
+            on_release:
+                root.manager.transition.direction = 'left'
+                root.manager.current = 'fern'
+                root.manager.current_screen.ids.bottom_nav_barnsley.switch_tab('screen 1')
+                # Из-за бага приходится перезагружать кнопки
+                root.manager.current_screen.ids.bottom_nav_barnsley._refresh_tabs()
+
+        MDRaisedButton:
+            pos_hint:{"center_x": 0.5, "center_y": 0.5}
+            size_hint: 0.5, 0.1
+            text: "В разработке..."
+            text_color: 0, 0, 0, 1
+            md_bg_color: .95, .87, .60, 0.7
+
+        MDRaisedButton:
+            pos_hint:{"center_x": 0.5, "center_y": 0.5}
+            size_hint: 0.5, 0.1
+            text: "В главное меню"
+            text_color: 0, 0, 0, 1
+            md_bg_color: .95, .87, .60, 0.7
+            on_release:
+                root.manager.transition.direction = 'down'
+                root.manager.current = 'menu'
