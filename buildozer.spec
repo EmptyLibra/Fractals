@@ -4,16 +4,16 @@
 title = Fractals
 
 # (str) Package name
-package.name = fractals001
+package.name = myfractals
 
 # (str) Package domain (needed for android/ios packaging)
-package.domain = org.EmptyLibra
+package.domain = org.test
 
 # (str) Source code where the main.py live
 source.dir = .
 
 # (list) Source files to include (let empty to include all the files)
-#source.include_exts = py,png,jpg,kv,atlas,po,mo
+source.include_exts = py,png,jpg,kv
 
 # (list) List of inclusions using pattern matching
 #source.include_patterns = assets/*,images/*.png
@@ -28,7 +28,7 @@ source.dir = .
 #source.exclude_patterns = license,images/*/*.jpg
 
 # (str) Application versioning (method 1)
-version = 0.1
+version = 0.2
 
 # (str) Application versioning (method 2)
 # version.regex = __version__ = ['"](.*)['"]
@@ -36,20 +36,20 @@ version = 0.1
 
 # (list) Application requirements
 # comma separated e.g. requirements = sqlite3,kivy
-requirements = python3,kivy==2.0.0,kivymd==0.104.1
+requirements = python3,kivy==2.0.0rc1,kivymd,numpy
 
 # (str) Custom source folders for requirements
 # Sets custom source for any requirements with recipes
 # requirements.source.kivy = ../../kivy
 
 # (str) Presplash of the application
-#presplash.filename = %(source.dir)s/data/logo/presplash512okmin.png
+presplash.filename = 'background.jpg'
 
 # (str) Icon of the application
-#icon.filename = %(source.dir)s/data/logo/logo512min.png
+#icon.filename = %(source.dir)s/data/icon.png
 
 # (str) Supported orientation (one of landscape, sensorLandscape, portrait or all)
-orientation = all
+orientation = portrait
 
 # (list) List of service to declare
 #services = NAME:ENTRYPOINT_TO_PY,NAME2:ENTRYPOINT2_TO_PY
@@ -62,7 +62,7 @@ orientation = all
 # author = © Copyright Info
 
 # change the major version of python used by the app
-osx.python_version = 3
+osx.python_version = 3.8.5
 
 # Kivy version to use
 osx.kivy_version = 2.0.0
@@ -72,7 +72,7 @@ osx.kivy_version = 2.0.0
 #
 
 # (bool) Indicate if the application should be fullscreen or not
-fullscreen = 0
+fullscreen = 1
 
 # (string) Presplash background color (for android toolchain)
 # Supported formats are: #RRGGBB #AARRGGBB or one of the following names:
@@ -318,6 +318,7 @@ warn_on_root = 1
 
 # (str) Path to build output (i.e. .apk, .ipa) storage
 # bin_dir = ./bin
+
 
 #    -----------------------------------------------------------------------------
 #    List as sections

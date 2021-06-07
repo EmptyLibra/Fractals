@@ -1,5 +1,4 @@
 # Программа реализует GUI для двух методов рисования фракталов. Первый - это метод хаоса, а второй - папоротник Барнсли
-
 from kivy.clock import Clock
 from kivy.properties import NumericProperty, ListProperty
 from kivymd.app import MDApp
@@ -8,7 +7,6 @@ from kivymd.uix.button import MDFlatButton
 from kivymd.uix.dialog import MDDialog
 from kivymd.uix.label import MDLabel
 from kivymd.uix.screen import MDScreen
-from kivymd.uix.textfield import MDTextField
 from kivy.graphics.vertex_instructions import Point
 from kivy.graphics.context_instructions import Color
 from kivy.lang import Builder
@@ -16,6 +14,8 @@ import random
 import numpy as np
 import math
 from kivy.graphics.transformation import Matrix
+from kivymd.uix.textfield import MDTextField
+
 
 class MainMenu(MDScreen):
     pass
@@ -158,7 +158,7 @@ class BarnsleyFern(MDScreen):
             if key[0] == 'L':
                 Lb = MDLabel(text=my_widgets[key], font_style='Caption', text_size=self.size, size_hint=(1.0, 1.0),
                              halign="left", valign="bottom", theme_text_color="Custom", text_color=(1, 1, 1, 1),)
-                Lb.padding_y = 15
+                Lb.padding_y = 5
                 Lb.bind(size=Lb.setter('text_size'))
                 self.ids.settings_layout.add_widget(Lb)
             else:
@@ -293,20 +293,12 @@ class BarnsleyFern(MDScreen):
         ]
         button.text = ferns[self.fern_num][0]
         for i, TF in enumerate(self.text_fields):
-            TF.text = str(ferns[self.fern_num][1][i])
+            TF.text = TF.helper_text = str(ferns[self.fern_num][1][i])
         # Перейти к следующему папоротнику
         self.fern_num = (self.fern_num + 1) % 8 if self.fern_num != 5 else 0
 
 # Загружаем kv файлы и создаём окна программы
 class DrawingWindowApp(MDApp):
-    '''def set_background(self, *args):
-        self.root_window.bind(size=self.do_resize)
-        with self.root_window.canvas.before:
-            self.bg = Rectangle(source='background.jpg', pos=(0, 0), size=(self.root_window.size))
-
-    def do_resize(self, *args):
-        self.bg.size = self.root_window.size'''
-
     def build(self):
         Builder.load_file('MainMenu.kv')
         Builder.load_file('SelectionFractalsMenu.kv')
@@ -318,7 +310,6 @@ class DrawingWindowApp(MDApp):
         sm.add_widget(SelectionFractalsMenu(name='fractals'))
         sm.add_widget(ChaosMethod(name='chaos'))
         sm.add_widget(BarnsleyFern(name='fern'))
-        #Clock.schedule_once(self.set_background, 0)
         return sm
 
 

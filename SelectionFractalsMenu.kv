@@ -1,13 +1,12 @@
 <SelectionFractalsMenu>:
     FitImage:
         source: 'Menu2.jpg'
-    BoxLayout:
+    MDBoxLayout:
         orientation: 'vertical'
         padding: 50
-        spacing: 30
-
+        spacing: 15
         MDRaisedButton:
-            pos_hint:{"center_x": 0.5, "center_y": 0.5}
+            pos_hint: {'center_x': 0.5, 'center_y': 0.5}
             size_hint: 0.5, 0.1
             text: "Метод хаоса"
             text_color: 0, 0, 0, 1
@@ -20,7 +19,7 @@
                 root.manager.current_screen.ids.bottom_nav_chaos._refresh_tabs()
 
         MDRaisedButton:
-            pos_hint:{"center_x": 0.5, "center_y": 0.5}
+            pos_hint: {'center_x': 0.5, 'center_y': 0.5}
             size_hint: 0.5, 0.1
             text: "Папоротник Барнсли"
             text_color: 0, 0, 0, 1
@@ -33,14 +32,14 @@
                 root.manager.current_screen.ids.bottom_nav_barnsley._refresh_tabs()
 
         MDRaisedButton:
-            pos_hint:{"center_x": 0.5, "center_y": 0.5}
+            pos_hint: {'center_x': 0.5, 'center_y': 0.5}
             size_hint: 0.5, 0.1
             text: "В разработке..."
             text_color: 0, 0, 0, 1
             md_bg_color: .95, .87, .60, 0.7
 
         MDRaisedButton:
-            pos_hint:{"center_x": 0.5, "center_y": 0.5}
+            pos_hint: {'center_x': 0.5, 'center_y': 0.5}
             size_hint: 0.5, 0.1
             text: "В главное меню"
             text_color: 0, 0, 0, 1
@@ -48,3 +47,5 @@
             on_release:
                 root.manager.transition.direction = 'down'
                 root.manager.current = 'menu'
+        Widget:
+            size_hint: 1, 0.5
