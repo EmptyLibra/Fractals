@@ -9,7 +9,6 @@
 ![alt text](https://github.com/EmptyLibra/Fractals/blob/master/readmeImage2.png)
 
 2. Второе - это папоротник Барнсли. Можно самостоятельно выбрать все настройки для него, а можно нарисовать один из предложенных шаблонов.
-
 ![alt text](https://github.com/EmptyLibra/Fractals/blob/master/readmeImage3.png)
 
 apk файл этой программы выложен в последнем релизе этого проекта.
